@@ -1,0 +1,67 @@
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	Plug 'jayli/vim-easycomplete'
+	Plug 'SirVer/ultisnips'
+	Plug 'teal-language/vim-teal'
+	" Optional dependencies; will be loaded on-demand when editing Teal files
+	Plug 'dense-analysis/ale', { 'for': ['teal', 'lua'] }
+	Plug 'tpope/vim-endwise', { 'for':  ['teal', 'lua'] }
+	Plug 'tpope/vim-obsession'
+call plug#end()
+
+filetype plugin on
+filetype indent on
+set syntax=on
+
+set number
+set cursorline
+set nobackup
+set incsearch
+set ignorecase
+set smartcase
+set showcmd
+set showmatch
+set mouse=a
+set hlsearch
+set history=1000
+
+set tabstop=2
+set shiftwidth=2
+
+" STATUS LINE ------------------------------------------------------------ {{{
+
+" Clear status line when vimrc is reloaded.
+set statusline=
+
+" Status line left side.
+set statusline+=\ %F\ %M\ %Y\ %R
+
+" Use a divider to separate the left side from the right side.
+set statusline+=%=
+
+" Status line right side.
+set statusline+=row:\ %l\ col:\ %c\ percent:\ %p%%
+
+" Show the status on the second to last line.
+set laststatus=2
+
+" }}}
+
+" Do not let cursor scroll below or above N number of lines when scrolling.
+set scrolloff=10
+
+" Do not wrap lines. Allow long lines to extend as far as the line goes.
+set nowrap
+set showmode
+
+" Change colorscheme...the highlight is necessary for some reason
+highlight Normal ctermfg=white ctermbg=black
+colorscheme gruvbox
+set shortmess=a
+set cmdheight=2
