@@ -6,6 +6,7 @@ endif
 
 call plug#begin()
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	Plug 'junegunn/fzf.vim'
 	Plug 'jayli/vim-easycomplete'
 	Plug 'SirVer/ultisnips'
 	Plug 'teal-language/vim-teal'
@@ -13,12 +14,19 @@ call plug#begin()
 	Plug 'dense-analysis/ale', { 'for': ['teal', 'lua'] }
 	Plug 'tpope/vim-endwise', { 'for':  ['teal', 'lua'] }
 	Plug 'tpope/vim-obsession'
+	Plug 'liuchengxu/vim-which-key'
+	Plug 'vimpostor/vim-tpipeline'
+
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
+let mapleader=" "
+nnoremap <SPACE> <Nop>
 filetype plugin on
 filetype indent on
-set syntax=on
 
+set syntax=on
 set number
 set cursorline
 set nobackup
@@ -63,5 +71,22 @@ set showmode
 " Change colorscheme...the highlight is necessary for some reason
 highlight Normal ctermfg=white ctermbg=black
 colorscheme gruvbox
-set shortmess=a
-set cmdheight=2
+set cmdheight=1
+
+" File finding
+nnoremap <leader>fo :Files<CR>
+nnoremap <leader>fg :GitFiles<CR>
+
+" Buffers
+nnoremap <leader>b :Buffers<CR>
+
+" Turn off macros because my hands are wild and I always hit record
+map q <Nop>
+
+" Which key
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+
+let g:tpipeline_autoembed = 0
+
+let g:airline_powerline_fonts = 1
+let g:airline_theme='base16_gruvbox_dark_hard'
