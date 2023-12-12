@@ -1,0 +1,8 @@
+[user]
+	email = flick.ej@gmail.com
+	name = Eric Flick
+[init]
+	defaultBranch = main
+[core]
+	autocrlf = input
+	hooksPath = ~/.config/git/hooks
